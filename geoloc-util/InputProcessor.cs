@@ -11,29 +11,28 @@ namespace geoloc_util
 {
     internal class InputProcessor
     {
-        public static async Task<List<KeyValuePair<string, LocationResponse>>> ProcessInput(string userInput)
-        {
-            string[] input = StringUtilities.ReplaceSubstring(userInput, "\" \"", ";").Split(';');
+        public static async Task<List<KeyValuePair<string, LocationResponse>>> ProcessInput(string[] userInput)
+        {            
             List<KeyValuePair<string, LocationResponse>> output = new List<KeyValuePair<string, LocationResponse>>();
 
             GeoCodingAPIHelper geoCodingAPIHelper = new GeoCodingAPIHelper();
 
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; i < userInput.Length; i++)
             {
                 string auth = EnvironmentManager.AuthKey;
                 LocationResponse response;
 
-                if (input[i].Contains(","))
+                if (userInput[i].Contains(","))
                 {
-                    string[] cityStateCombo = input[i].Split(",");
+                    string[] cityStateCombo = userInput[i].Split(",");
                     response = await geoCodingAPIHelper.GetLocationByCityState(EnvironmentManager.AuthKey, cityStateCombo[0], cityStateCombo[1]);
                 }
                 else
                 {
-                    response = await geoCodingAPIHelper.GetLocationByZipAsync(EnvironmentManager.AuthKey, input[i]);
+                    response = await geoCodingAPIHelper.GetLocationByZipAsync(EnvironmentManager.AuthKey, userInput[i]);
                 }
                 KeyValuePair<string, LocationResponse> result =
-                    new KeyValuePair<string, LocationResponse>(input[i], response);
+                    new KeyValuePair<string, LocationResponse>(userInput[i], response);
                 output.Add(result);
             }
             return output;
