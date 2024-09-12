@@ -26,4 +26,3 @@ namespace geoloc_util.GeoCodingAPI.GeoCodingAPIModels
         public string? en { get; set; }
     }
 }
-}

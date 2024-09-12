@@ -8,8 +8,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="geoloc-util-tests" />
+	</ItemGroup>	
+	
   <ItemGroup>
-    <Folder Include="Utilities\" />
+    <PackageReference Include="RestSharp" Version="112.0.0" />
   </ItemGroup>
 
 </Project>
