@@ -40,7 +40,8 @@ namespace geoloc_util_tests
         [Test]
         public async Task TestLocationInputs()
         {
-            var response = await InputProcessor.ProcessInput("\"75949\" \"New York, NY\" \"sdfdsf\"");
+            var response = await InputProcessor.ProcessInput(
+                new string[] { "75949", "New York, NY", "sdfdsf"});
             response[0].Value.Should().BeEquivalentTo(huntington);
             response[1].Value.Should().BeEquivalentTo(newYork);
             response[2].Value.Should().BeEquivalentTo(notFound);
