@@ -14,7 +14,7 @@ namespace geoloc_util_tests
         LocationResponse newYork;
         LocationResponse notFound;
 
-        //test
+        //test2
         [SetUp]
         public void Setup()
         {
